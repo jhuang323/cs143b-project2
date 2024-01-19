@@ -76,9 +76,17 @@ def main():
 
     # print(f"PA {TheVMmanagerobj.VAtoPA(2097162)}")
 
-    print(f"PA {TheVMmanagerobj.VAtoPA(2359818)}")
+    print(f"PA {TheVMmanagerobj.VAtoPA(2097162)}")
+    print(f"PA {TheVMmanagerobj.VAtoPA(2097674)}")
+    print(f"PA {TheVMmanagerobj.VAtoPA(2359306)}")
 
     print(TheVMmanagerobj)
+
+    
+
+    print(f"PA {TheVMmanagerobj.VAtoPA(2359818)}")
+
+    # print(TheVMmanagerobj)
 
     # TestList = [1,2,3,4,5,6,7,111]
 

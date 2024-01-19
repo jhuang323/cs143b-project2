@@ -87,6 +87,10 @@ class VMManager:
 
                     self.DiskAllocatedList.append(disknum)
 
+                else:
+                    #allocate PM frame
+                    self._appendmemFlistSort(pagetframenum)
+
             print(self.nonrespageDict)
 
 
