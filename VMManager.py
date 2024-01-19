@@ -146,13 +146,103 @@ class VMManager:
         CompPW = aVAint & 0b111111111111111111
 
         return SPW(CompS,CompP,CompW,CompPW)
+
+    def _findnextFree(self) -> int:
+        '''Given a sorted list find the next free frame num'''
+
+        for aindex in range(len(self.MemAllocFrameList)-1):
+
+            ValAtInd = self.MemAllocFrameList[aindex]
+
+            ValAtNextInd = self.MemAllocFrameList[aindex + 1]
+
+            # print(f"ind {aindex} {ValAtInd} {ValAtNextInd}")
+
+            
+            
+            # print("outer else")
+            #case where end of list has not been reached
+            if ValAtNextInd - ValAtInd > 1:
+                return ValAtInd + 1
+            
+        #check if last elem + 1 is out of range
+        NextIndexAfterLast = self.MemAllocFrameList[len(self.PM)-1] + 1
+
+        if NextIndexAfterLast > (MAXPMSIZE - 1):
+            raise "Error No More Free Frames in PM"
+        
+        return NextIndexAfterLast
+    
+    def _copyDisktoPM(self,adiskInd: int, aFreePMInd):
+        StartingPMaddr = aFreePMInd * PAGESIZE
+
+        DiskPageBlock = self.Disk[adiskInd]
+
+        for aindex in range(PAGESIZE):
+            self.PM[StartingPMaddr + aindex] = DiskPageBlock[aindex]
+
     
     def VAtoPA(self,aVA: int) -> int:
         TheSPWtup = self._calcSPW(aVA)
 
         print(f"SPW {TheSPWtup}")
 
-        #Error check if pw > 
+        #Error check if pw >= PM[2s]
+        if TheSPWtup.pw >= self.PM[2*TheSPWtup.s]:
+            raise "Error VA outside of seg boundary"
+        
+        #get pt Frame num
+        PTFrameNum = self.PM[2*TheSPWtup.s + 1]
+
+        #check if PTFnum is negative
+        if PTFrameNum < 0:
+            print("PT is non resident")
+
+            AfreeFrameNumforPT = self._findnextFree()
+            print(f"The freeframe for pt {AfreeFrameNumforPT}")
+
+            self._copyDisktoPM(abs(PTFrameNum),AfreeFrameNumforPT)
+
+            #update list of FF
+            self._appendmemFlistSort(AfreeFrameNumforPT)
+
+            #update list of allocated disk blocks
+            self.DiskAllocatedList.remove(abs(PTFrameNum))
+
+            #update st entry
+            self.PM[2*TheSPWtup.s + 1] = AfreeFrameNumforPT
+            PTFrameNum = AfreeFrameNumforPT
+
+
+
+        #get Page Frame Num
+        PageFrameNum = self.PM[PTFrameNum * PAGESIZE + TheSPWtup.p]
+
+        #check if Page Frame Num is negative
+
+        if PageFrameNum < 0:
+            print("Page is not resident")
+
+            AfreeFNumforPage = self._findnextFree()
+            print(f"The freeframe for page {AfreeFNumforPage}")
+
+            #update list of FF
+            self._appendmemFlistSort(AfreeFNumforPage)
+
+            #update list of allocated disk blocks
+            self.DiskAllocatedList.remove(abs(PageFrameNum))
+
+            #update pt entry
+            self.PM[PTFrameNum * PAGESIZE + TheSPWtup.p] = AfreeFNumforPage
+            PageFrameNum = AfreeFNumforPage
+
+
+
+
+        #get PA address
+        PAaddress = PageFrameNum * PAGESIZE + TheSPWtup.w
+
+        return PAaddress
 
 
 
@@ -181,7 +271,7 @@ class VMManager:
         TheretStr += "\nDisk: \n"
 
         for aindex in self.DiskAllocatedList:
-            TheretStr += f"Disk[{aindex}]={self.Disk[aindex][0:5]}"
+            TheretStr += f"Disk[{aindex}]={self.Disk[aindex][0:5]}\n"
 
 
 
