@@ -61,8 +61,8 @@ class VMManager:
         with open(afilename) as fp:
             TheLines = fp.readlines()
 
-            print(f"line 0: {TheLines[0]}")
-            print(f"{self._getthrupleList(TheLines[0])}")
+            # print(f"line 0: {TheLines[0]}")
+            # print(f"{self._getthrupleList(TheLines[0])}")
 
             Line0ThrupList = self._getthrupleList(TheLines[0])
 
@@ -91,13 +91,13 @@ class VMManager:
                     #allocate PM frame
                     self._appendmemFlistSort(pagetframenum)
 
-            print(self.nonrespageDict)
+            # print(self.nonrespageDict)
 
 
             #initialize line 1 page tables
 
 
-            print(f"line 1: {TheLines[1]}")
+            # print(f"line 1: {TheLines[1]}")
             Line1ThrupList = self._getthrupleList(TheLines[1])
 
             for a1Thrup in Line1ThrupList:
