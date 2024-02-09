@@ -57,7 +57,7 @@ def main():
 
     TheVMmanagerobj = VMManager.VMManager()
 
-    TheVMmanagerobj.initialize("init-dp.txt")
+    TheVMmanagerobj.initialize("init-dp-justtest.txt")
 
     print(TheVMmanagerobj)
 
@@ -74,7 +74,7 @@ def main():
     # print(f"s {CompS} p {CompP} w {CompW} pw {CompPW}")
 
 
-    # print(f"PA {TheVMmanagerobj.VAtoPA(2097162)}")
+    print(f"PA {TheVMmanagerobj.VAtoPA(2097162)}")
 
     print(f"PA {TheVMmanagerobj.VAtoPA(2097162)}")
     print(f"PA {TheVMmanagerobj.VAtoPA(2097674)}")
@@ -84,7 +84,7 @@ def main():
 
     
 
-    print(f"PA {TheVMmanagerobj.VAtoPA(2359818)}")
+    # print(f"PA {TheVMmanagerobj.VAtoPA(2359818)}")
 
     # print(TheVMmanagerobj)
 

@@ -170,7 +170,7 @@ class VMManager:
                 return ValAtInd + 1
             
         #check if last elem + 1 is out of range
-        NextIndexAfterLast = self.MemAllocFrameList[len(self.PM)-1] + 1
+        NextIndexAfterLast = self.MemAllocFrameList[len(self.MemAllocFrameList)-1] + 1
 
         if NextIndexAfterLast > (MAXPMSIZE - 1):
             raise "Error No More Free Frames in PM"
@@ -192,7 +192,9 @@ class VMManager:
         print(f"SPW {TheSPWtup}")
 
         #Error check if pw >= PM[2s]
-        if TheSPWtup.pw >= self.PM[2*TheSPWtup.s]:
+        SegSize = self.PM[2*TheSPWtup.s]
+
+        if SegSize is None or TheSPWtup.pw >= SegSize:
             raise "Error VA outside of seg boundary"
         
         #get pt Frame num

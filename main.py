@@ -30,9 +30,13 @@ def main():
 
     TheVMmanagerobj.initialize(InitFilename)
 
+    #debug print vmmanger obj
+    print(TheVMmanagerobj)
+
     
     while(True):
         try:
+
             userinpt = input()
             userinpt = userinpt.strip()
 
@@ -43,10 +47,15 @@ def main():
             for aintstr in userinpt.split():
                 VAList.append(int(aintstr))
 
+            
+
             #translate
                 
             for aVMaddr in VAList:
-                FinalPAList.append(TheVMmanagerobj.VAtoPA(aVMaddr))
+                try:
+                    FinalPAList.append(TheVMmanagerobj.VAtoPA(aVMaddr))
+                except Exception as e:
+                    FinalPAList.append(-1)
 
             print(FinalPAList)
 
@@ -58,7 +67,12 @@ def main():
                 else:
                     FinalStr += f"{aPMaddr} "
 
+            #debug print vmmanger obj
+            print(TheVMmanagerobj)
+
             print(FinalStr)
+
+            
 
 
 
