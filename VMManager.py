@@ -200,6 +200,10 @@ class VMManager:
         #get pt Frame num
         PTFrameNum = self.PM[2*TheSPWtup.s + 1]
 
+        #check for none
+        if PTFrameNum is None:
+            raise "PTFrameNum Is None DNE"
+
         #check if PTFnum is negative
         if PTFrameNum < 0:
             print("PT is non resident")
@@ -223,6 +227,10 @@ class VMManager:
 
         #get Page Frame Num
         PageFrameNum = self.PM[PTFrameNum * PAGESIZE + TheSPWtup.p]
+
+        #check None case
+        if PageFrameNum is None:
+            raise "ERROR: PageFrameNum is None DNE"
 
         #check if Page Frame Num is negative
 
