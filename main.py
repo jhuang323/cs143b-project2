@@ -51,7 +51,12 @@ def main():
             FinalPAList = list()
 
             for aintstr in userinpt.split():
-                VAList.append(int(aintstr))
+
+                #error checking
+                try:
+                    VAList.append(int(aintstr))
+                except ValueError:
+                    VAList.append(-1)
 
             
 
