@@ -189,7 +189,7 @@ class VMManager:
     def VAtoPA(self,aVA: int) -> int:
         TheSPWtup = self._calcSPW(aVA)
 
-        print(f"SPW {TheSPWtup}")
+        # print(f"SPW {TheSPWtup}")
 
         #Error check if pw >= PM[2s]
         SegSize = self.PM[2*TheSPWtup.s]
@@ -206,10 +206,10 @@ class VMManager:
 
         #check if PTFnum is negative
         if PTFrameNum < 0:
-            print("PT is non resident")
+            # print("PT is non resident")
 
             AfreeFrameNumforPT = self._findnextFree()
-            print(f"The freeframe for pt {AfreeFrameNumforPT}")
+            # print(f"The freeframe for pt {AfreeFrameNumforPT}")
 
             self._copyDisktoPM(abs(PTFrameNum),AfreeFrameNumforPT)
 
@@ -235,10 +235,10 @@ class VMManager:
         #check if Page Frame Num is negative
 
         if PageFrameNum < 0:
-            print("Page is not resident")
+            # print("Page is not resident")
 
             AfreeFNumforPage = self._findnextFree()
-            print(f"The freeframe for page {AfreeFNumforPage}")
+            # print(f"The freeframe for page {AfreeFNumforPage}")
 
             #update list of FF
             self._appendmemFlistSort(AfreeFNumforPage)

@@ -1,0 +1,32 @@
+VMManger:
+Physical mem:
+PM[16]=4000
+PM[17]=3
+PM[18]=5000
+PM[19]=-7
+PM[1536]=10
+PM[1537]=-20
+
+Mem Alloc List:
+Alloc Mem Page Frame Num: 0
+Alloc Mem Page Frame Num: 1
+Alloc Mem Page Frame Num: 3
+Alloc Mem Page Frame Num: 10
+Alloc Mem Page Frame Num: 13
+
+Disk: 
+Disk[7]=[13, -25, None, None, None]
+Disk[20]=[None, None, None, None, None]
+Disk[25]=[None, None, None, None, None]
+
+SPW SPW(s=8, p=0, w=10, pw=10)
+SPW SPW(s=8, p=1, w=10, pw=522)
+Page is not resident
+The freeframe for page 2
+SPW SPW(s=9, p=0, w=10, pw=10)
+PT is non resident
+The freeframe for pt 4
+SPW SPW(s=9, p=1, w=10, pw=522)
+Page is not resident
+The freeframe for page 5
+5130 1034 6666 2570

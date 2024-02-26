@@ -7,7 +7,7 @@ import VMManager
 
 
 def main():
-    print("IN Main")
+    # print("IN Main")
 
     InitFilename = None
 
@@ -16,22 +16,28 @@ def main():
     try: 
         opts, args = getopt.getopt(argv, "i:") 
       
-    except: 
-        print("Error") 
+    except getopt.GetoptError as err: 
+        print(err)
+        print("Usage: test.py -i init-dp.txt < inpt.txt > out.txt")
+        sys.exit(2) 
   
     try:
         for opt, arg in opts: 
             if opt in ['-i']: 
                 InitFilename = arg
+            else:
+                print("Usage: test.py -i init-dp.txt < inpt.txt > out.txt")
+                sys.exit()
+
     except UnboundLocalError:
-        print("Usage: test.py -i InitialFileName.txt")
+        print("Usage: test.py -i init-dp.txt < inpt.txt > out.txt")
 
     TheVMmanagerobj = VMManager.VMManager()
 
     TheVMmanagerobj.initialize(InitFilename)
 
     #debug print vmmanger obj
-    print(TheVMmanagerobj)
+    # print(TheVMmanagerobj)
 
     
     while(True):
@@ -57,7 +63,7 @@ def main():
                 except Exception as e:
                     FinalPAList.append(-1)
 
-            print(FinalPAList)
+            # print(FinalPAList)
 
             FinalStr = ""
 
@@ -68,7 +74,7 @@ def main():
                     FinalStr += f"{aPMaddr} "
 
             #debug print vmmanger obj
-            print(TheVMmanagerobj)
+            # print(TheVMmanagerobj)
 
             print(FinalStr)
 
@@ -82,7 +88,7 @@ def main():
             exit()
     
 
-    print(InitFilename)
+    
 
 
 if __name__ == "__main__":
