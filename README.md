@@ -1,7 +1,7 @@
 # CS143B Project 2 Virtual Memory README
 The Virtual Memory Project cs143b
 
-- In this project I have implemented the extended version of VM manager which supports demnd paging
+- In this project I have implemented the extended version of VM manager which supports demnd paging.
 
 ## Setup
 Note: This project is written entirely in python on OpenLab machines. It is recommended to run this project on the UCI Openlab machines.

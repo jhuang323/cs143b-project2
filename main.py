@@ -5,6 +5,8 @@ import getopt
 
 import VMManager
 
+USAGESTATEMENT = "Usage: main.py -i init-dp.txt < inpt.txt > out.txt"
+
 
 def main():
     # print("IN Main")
@@ -18,7 +20,7 @@ def main():
       
     except getopt.GetoptError as err: 
         print(err)
-        print("Usage: test.py -i init-dp.txt < inpt.txt > out.txt")
+        print(USAGESTATEMENT)
         sys.exit(2) 
   
     try:
@@ -26,11 +28,11 @@ def main():
             if opt in ['-i']: 
                 InitFilename = arg
             else:
-                print("Usage: test.py -i init-dp.txt < inpt.txt > out.txt")
+                print(USAGESTATEMENT)
                 sys.exit()
 
     except UnboundLocalError:
-        print("Usage: test.py -i init-dp.txt < inpt.txt > out.txt")
+        print(USAGESTATEMENT)
 
     TheVMmanagerobj = VMManager.VMManager()
 
