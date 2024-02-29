@@ -84,7 +84,7 @@ def main():
             # print(TheVMmanagerobj)
 
             #End Print the final str
-            print(FinalStr)
+            print(FinalStr,end='')
 
             
 
