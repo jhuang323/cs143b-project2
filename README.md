@@ -1,7 +1,9 @@
 # CS143B Project 2 Virtual Memory README
 The Virtual Memory Project cs143b
+By: Justin K Huang ID: 67387111 NetID: huangjk2
 
-- In this project I have implemented the extended version of VM manager which supports demnd paging.
+- In this project I have implemented the extended version of VM manager which supports demand paging.
+- This project also works for the basic version.
 
 ## Setup
 Note: This project is written entirely in python on OpenLab machines. It is recommended to run this project on the UCI Openlab machines.
@@ -19,6 +21,7 @@ An example of running the program:
 ```
 python3 main.py -i init-dp.txt  <inpt.txt >out.txt
 ```
+Note: Change init-dp.txt, inpt.txt, out.txt to your corresponding file names for the initialzation file, input file, and the output file
 
 Assuming init.txt contains valid commands according to specifications on initializing the STs and PTs it will write the output to out.txt given an input files with a list of VAs to translate to
 Also the input file (inpt.txt) and the initialization file (init-dp.txt) must be in the same directory as main.py
@@ -27,7 +30,7 @@ Also the input file (inpt.txt) and the initialization file (init-dp.txt) must be
 
 - main.py
 
-The shell of the program takes in commands from stdin and outputs the output to stdout
+The shell of the program takes in commands from stdin and outputs the PA translations to stdout
 
 - VMManager
 
